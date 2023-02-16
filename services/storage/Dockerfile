@@ -11,4 +11,4 @@ COPY --from=builder target/storage-0.0.1-SNAPSHOT.jar storage.jar
 
 EXPOSE 3001
 
-CMD ["java", "-jar", "warehouse.jar"]
+CMD ["java", "-jar", "storage.jar"]
