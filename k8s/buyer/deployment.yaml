@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: buyer-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: buyer
+  template:
+    metadata:
+      labels:
+        app: buyer
+    spec:
+      containers:
+        - image: buyer:latest
+          imagePullPolicy: Never
+          name: buyer
+          ports:
+            - containerPort: 3002
