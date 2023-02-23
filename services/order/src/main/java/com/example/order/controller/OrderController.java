@@ -20,7 +20,6 @@ public class OrderController {
 
     @GetMapping("/all")
     public ResponseEntity<List<Order>> getAllOrder(){
-        System.out.println(orderService.getAllOrder());
         return ResponseEntity.ok( orderService.getAllOrder());
     }
 

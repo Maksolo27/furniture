@@ -3,7 +3,6 @@ package com.example.order.services;
 import com.example.order.entities.Order;
 import com.example.order.repository.OrderRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
