@@ -1,22 +1,13 @@
 package com.example.storage.repository;
 
+
 import com.example.storage.entity.Ware;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
+@Repository
+public interface StorageRepository extends CrudRepository<Ware, Long>, JpaRepository<Ware, Long> {
 
-public class StorageRepository {
-
-    List<Ware> wares = new ArrayList<>();
-
-    public StorageRepository () {
-        wares.add (new Ware (0, "Phone", 200.0));
-        wares.add (new Ware (1, "Computer", 500.0));
-        wares.add (new Ware (2, "Laptop", 300.0));
-    }
-
-    public List<Ware> getAllWares () {
-        return wares;
-    }
 
 }
