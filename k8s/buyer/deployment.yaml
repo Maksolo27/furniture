@@ -13,8 +13,20 @@ spec:
         app: buyer
     spec:
       containers:
+        - initContainers:
+            - name: run-migrations
+              image: buyer-migrations:13
+              command: [ "mvn", "flyway:migrate" ] # CLI команда запуску міграцій, де $(POSTGRESQL_URL) і $(VERSION) змінні середовища
+              env:
+                - name: DATABASE_URL
+                  value: "jdbc:postgresql://postgres:5432/demo"
         - image: buyer:latest
           imagePullPolicy: Never
           name: buyer
           ports:
             - containerPort: 3002
+          envFrom:
+            - configMapRef:
+                name: buyer-config
+            - secretRef:
+                name: buyer-secret
