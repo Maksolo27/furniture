@@ -24,7 +24,7 @@ public class BuyerController {
         buyerService.addBuyer(buyer);
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public ResponseEntity<List<Buyer>> getAllBuyers () {
         System.out.println (buyerService.getAllBuyers());
         return ResponseEntity.ok (buyerService.getAllBuyers());
@@ -40,11 +40,11 @@ public class BuyerController {
         Gson gson = new Gson ();
         Buyer buyer = gson.fromJson (json, Buyer.class);
         Buyer chosenBuyer = buyerService.getAllBuyers().get(Integer.parseInt(id));
-        chosenBuyer.setFirstname(buyer.getFirstname());
-        chosenBuyer.setLastname(buyer.getLastname());
+        chosenBuyer.setFirstName(buyer.getFirstName());
+        chosenBuyer.setLastName(buyer.getLastName());
         chosenBuyer.setPhone(buyer.getPhone());
         chosenBuyer.setCity(buyer.getCity());
-        chosenBuyer.setAdress(buyer.getAdress());
+        chosenBuyer.setAddress(buyer.getAddress());
         buyerService.updateBuyer(buyer);
     }
 
