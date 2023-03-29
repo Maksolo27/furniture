@@ -5,6 +5,7 @@ import com.example.buyer.entities.Buyer;
 import com.example.buyer.services.BuyerService;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,14 +33,14 @@ public class BuyerController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Buyer> getBuyerById (@PathVariable String id) {
-        return ResponseEntity.ok (buyerService.getAllBuyers().get(Integer.parseInt(id)));
+        return ResponseEntity.ok (buyerService.getById(Long.valueOf(id)));
     }
 
     @PostMapping("update/{id}")
     public void updateBuyer (@PathVariable String id, @RequestBody String json) {
         Gson gson = new Gson ();
         Buyer buyer = gson.fromJson (json, Buyer.class);
-        Buyer chosenBuyer = buyerService.getAllBuyers().get(Integer.parseInt(id));
+        Buyer chosenBuyer = buyerService.getById(Long.valueOf(id));
         chosenBuyer.setFirstname(buyer.getFirstname());
         chosenBuyer.setLastname(buyer.getLastname());
         chosenBuyer.setPhone(buyer.getPhone());
@@ -52,4 +53,9 @@ public class BuyerController {
     public void deleteBuyer (@PathVariable String id) {
         buyerService.deleteById(Long.valueOf(id));
     }
+    @GetMapping("/ping")
+    public ResponseEntity<String> ping() {
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

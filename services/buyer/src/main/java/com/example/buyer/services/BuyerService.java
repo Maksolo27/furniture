@@ -26,12 +26,13 @@ public class BuyerService {
 
         buyerRepository.save(buyer);
     }
-
     public void deleteById (Long id) {
 
         buyerRepository.deleteById(id);
     }
 
-
+    public Buyer getById(Long id){
+       return buyerRepository.findById(id).get();
+    }
 
 }
