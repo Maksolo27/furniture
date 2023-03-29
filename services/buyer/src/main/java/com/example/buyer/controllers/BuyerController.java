@@ -40,11 +40,11 @@ public class BuyerController {
         Gson gson = new Gson ();
         Buyer buyer = gson.fromJson (json, Buyer.class);
         Buyer chosenBuyer = buyerService.getAllBuyers().get(Integer.parseInt(id));
-        chosenBuyer.setFirstName(buyer.getFirstName());
-        chosenBuyer.setLastName(buyer.getLastName());
+        chosenBuyer.setFirstname(buyer.getFirstname());
+        chosenBuyer.setLastname(buyer.getLastname());
         chosenBuyer.setPhone(buyer.getPhone());
         chosenBuyer.setCity(buyer.getCity());
-        chosenBuyer.setAddress(buyer.getAddress());
+        chosenBuyer.setAdress(buyer.getAdress());
         buyerService.updateBuyer(buyer);
     }
 
