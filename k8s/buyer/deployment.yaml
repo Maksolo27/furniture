@@ -12,21 +12,24 @@ spec:
       labels:
         app: buyer
     spec:
+      initContainers:
+        - name: run-migrations
+          image: buyer-migrations:14
+          command: [ "mvn", "flyway:migrate" ] # CLI команда запуску міграцій, де $(POSTGRESQL_URL) і $(VERSION) змінні середовища
+          env:
+            - name: DATABASE_URL
+              value: "jdbc:postgresql://postgres:5432/demo"
+
+
       containers:
-        - initContainers:
-            - name: run-migrations
-              image: buyer-migrations:13
-              command: [ "mvn", "flyway:migrate" ] # CLI команда запуску міграцій, де $(POSTGRESQL_URL) і $(VERSION) змінні середовища
-              env:
-                - name: DATABASE_URL
-                  value: "jdbc:postgresql://postgres:5432/demo"
-        - image: buyer:latest
-          imagePullPolicy: Never
-          name: buyer
+        - image: buyer:14     # образ Docker
+          imagePullPolicy: Never   # вказує k8s, що образ не потрібно завантажувати (варто використовувати лише для випадків, коли образи локальні)
+          name: buyer           # ім'я контейнеру
           ports:
-            - containerPort: 3002
+            - containerPort: 3001  # порт по якому можна звертатись до поди
           envFrom:
             - configMapRef:
                 name: buyer-config
             - secretRef:
                 name: buyer-secret
+

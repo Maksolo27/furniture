@@ -14,7 +14,7 @@ spec:
     spec:
       initContainers:
         - name: run-migrations
-          image: storage-migrations:13
+          image: storage-migrations:23
           command: [ "mvn", "flyway:migrate" ] # CLI команда запуску міграцій, де $(POSTGRESQL_URL) і $(VERSION) змінні середовища
           env:
             - name: DATABASE_URL
@@ -22,7 +22,7 @@ spec:
 
 
       containers:
-        - image: storage:13      # образ Docker
+        - image: storage:24     # образ Docker
           imagePullPolicy: Never   # вказує k8s, що образ не потрібно завантажувати (варто використовувати лише для випадків, коли образи локальні)
           name: storage           # ім'я контейнеру
           ports:

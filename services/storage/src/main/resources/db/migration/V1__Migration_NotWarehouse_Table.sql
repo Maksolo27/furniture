@@ -1,6 +1,6 @@
-CREATE SCHEMA IF NOT EXISTS ware3;
+CREATE SCHEMA IF NOT EXISTS notware1;
 
-CREATE TABLE IF NOT EXISTS ware3.ware (
+CREATE TABLE IF NOT EXISTS notware1.ware (
                                          id INT,
                                          name TEXT NOT NULL,
                                          price float8 NOT NULL,

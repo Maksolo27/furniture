@@ -74,7 +74,7 @@
                     <user>demo</user>
                     <password>demo</password>
                     <schemas>
-                        <schema>ware</schema>
+                        <schema>notware1</schema>
                     </schemas>
                 </configuration>
                 <dependencies>

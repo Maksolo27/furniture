@@ -2,11 +2,11 @@ package com.example.storage.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @JsonSerialize
 @Entity
+@Table(schema = "notware1")
 public class Ware {
 
     public Ware(long id, String name, double price) {
