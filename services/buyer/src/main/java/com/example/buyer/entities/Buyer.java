@@ -10,10 +10,10 @@ import jakarta.persistence.Id;
 @Entity
 public class Buyer {
 
-    public Buyer(long id, String firstName, String lastName, String phone, String city, String adress, float price) {
+    public Buyer(long id, String firstname, String lastname, String phone, String city, String adress, float price) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.phone = phone;
         this.city = city;
         this.adress = adress;
@@ -27,10 +27,10 @@ public class Buyer {
     private long id;
 
     @JsonProperty
-    private String firstName;
+    private String firstname;
 
     @JsonProperty
-    private String lastName;
+    private String lastname;
 
     @JsonProperty
     private String phone;
@@ -51,20 +51,20 @@ public class Buyer {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getPhone() {

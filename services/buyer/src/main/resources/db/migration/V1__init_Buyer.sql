@@ -1,6 +1,6 @@
 CREATE SCHEMA IF NOT EXISTS buyers;
 
-CREATE TABLE IF NOT EXISTS buyers.buyer (
+CREATE TABLE IF NOT EXISTS buyers.Buyer (
                                           id INT,
                                           firstName TEXT NOT NULL,
                                           lastName TEXT NOT NULL,
