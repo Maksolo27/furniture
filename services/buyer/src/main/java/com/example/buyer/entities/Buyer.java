@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 
 @JsonSerialize
 @Entity
-@Table(name = "buyer")
+@Table(schema = "buyers")
 public class Buyer {
 
     public Buyer(long id, String firstname, String lastname, String phone, String city, String adress, float price) {

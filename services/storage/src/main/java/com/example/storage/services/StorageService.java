@@ -19,6 +19,10 @@ public class StorageService {
         return warehouseRepository.findAll();
     }
 
+    public Ware getWareById (int id) {
+        return warehouseRepository.findById(Long.valueOf(id)).get();
+    }
+
     public void addWare (Ware ware) {
         warehouseRepository.saveAndFlush(ware);
     }
