@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "orders")
+@Table(schema = "orders")
 public class Order {
     @JsonProperty
     @Id
