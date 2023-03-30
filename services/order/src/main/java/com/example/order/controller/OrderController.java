@@ -4,6 +4,7 @@ import com.example.order.entities.Order;
 import com.example.order.services.OrderService;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,18 +40,20 @@ public class OrderController {
         Gson gson = new Gson ();
         Order order = gson.fromJson (json, Order.class);
         Order chosenOrder = orderService.getAllOrders().get(Integer.parseInt(id));
-        chosenOrder.setCustomerName(order.getCustomerName());
-        chosenOrder.setItemName(order.getItemName());
-        chosenOrder.setItemPrice(order.getItemPrice());
-        chosenOrder.setQuantity(order.getQuantity());
+        chosenOrder.setItemname(order.getItemname());
+        chosenOrder.setItemprice(order.getItemprice());
         orderService.updateOrder(order);
     }
 
     @DeleteMapping("delete/{id}")
     public void deleteOrder (@PathVariable String id) {
-        orderService.deleteById(Math.toIntExact(Long.valueOf(id)));
+        orderService.deleteById(Long.valueOf(id));
+    }
+
+    @GetMapping("/ping")
+    public ResponseEntity<String> ping() {
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
-
 
 

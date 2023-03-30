@@ -1,32 +1,51 @@
 package com.example.order.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
 
 @Entity
 @Table(name = "orders")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class Order {
+    @JsonProperty
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer orderId;
+    private Long orderid;
 
-    @Column(name = "customer_name")
-    private String customerName;
+    @JsonProperty
+    private String itemname;
 
-    @Column(name = "item_name")
-    private String itemName;
+    @JsonProperty
+    private float itemprice;
 
-    @Column(name = "item_price")
-    private Double itemPrice;
+    public Order(long orderid, String itemname, float itemprice) {
+        this.orderid = orderid;
+        this.itemname = itemname;
+        this.itemprice = itemprice;
+    }
 
-    @Column(name = "item_quantity")
-    private Integer quantity;
+    public Order(){}
+
+    public long getOrderid() {
+        return orderid;
+    }
+
+    public void setOrderid(long orderid) {
+        this.orderid = orderid;
+    }
+
+    public String getItemname() {
+        return itemname;
+    }
+
+    public void setItemname(String itemname) {
+        this.itemname = itemname;
+    }
+
+    public float getItemprice() {
+        return itemprice;
+    }
+
+    public void setItemprice(float itemprice) {
+        this.itemprice = itemprice;
+    }
 }
