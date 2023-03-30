@@ -12,25 +12,9 @@ spec:
       labels:
         app: order
     spec:
-      initContainers:
-        - name: run-migrations
-          image: order-migrations:2.0
-          command: [ "mvn", "flyway:migrate" ] # CLI команда запуску міграцій, де $(POSTGRESQL_URL) і $(VERSION) змінні середовища
-          env:
-            - name: DATABASE_URL
-              value: "jdbc:postgresql://postgres:5432/demo"
-
-
       containers:
-        - image: order:2.0     # образ Docker
-          imagePullPolicy: Never   # вказує k8s, що образ не потрібно завантажувати (варто використовувати лише для випадків, коли образи локальні)
-          name: order           # ім'я контейнеру
+        - image: order:latest
+          imagePullPolicy: Never
+          name: order
           ports:
-            - containerPort: 3003  # порт по якому можна звертатись до поди
-          envFrom:
-            - configMapRef:
-                name: order-config
-            - secretRef:
-                name: order-secret
-
-
+            - containerPort: 3003
