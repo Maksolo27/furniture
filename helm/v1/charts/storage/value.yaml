@@ -1,0 +1,40 @@
+replicaCount: 1
+
+service:
+  ports:
+    - name: http
+      port: 8080
+      containerPort: 3001
+
+ingress:
+  path: /api/storage
+  port: 8080
+
+selector:
+  app: storage
+
+image:
+  name: storage
+  tag: 2.0
+
+config:
+  POSTGRES_DB: demo
+  POSTGRES_HOST: postgres
+  DATABASE_URL: jdbc:postgresql://postgres:5432/demo
+
+secret:
+  #  JWT_SECRET: d7b79c83a74b1bfed52d80df15558874
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: demo
+#  POSTGRES_USER: "ZGVtbw=="
+#  POSTGRES_PASSWORD: "ZGVtbw=="
+
+migrations:
+  image:
+    name: storage-migrations
+    tag: 2.0
+  config:
+    POSTGRES_DB: demo
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: demo
+    DATABASE_URL: "jdbc:postgresql://postgres:5432/demo"
