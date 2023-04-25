@@ -1,7 +1,7 @@
 postgresql:
-  fullnameOverride: postgres # використовується як хост 
+  fullnameOverride: postgresql # використовується як хост
   postgresqlDatabase: "demo"
-  postgresqlUsername: "postgres"
+  postgresqlUsername: "demo"
   postgresqlPassword: "demo"
   postgresqlPostgresPassword: "demo"
   persistence:

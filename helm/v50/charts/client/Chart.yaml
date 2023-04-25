@@ -1,10 +1,10 @@
 apiVersion: v2
 type: application
-version: 0.1.0
-name: buyer
+version: 0.2.0
+name: client
 appVersion: "0.1"
-description: "Buyer Service"
+description: "Microservices Client"
 dependencies:
   - name: common
-    version: 0.1.0
+    version: 0.2.0
     repository: file://../common

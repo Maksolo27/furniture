@@ -1,0 +1,14 @@
+apiVersion: v2
+type: application
+version: 0.0.2
+name: furniture
+appVersion: "0.1"
+description: "Furniture Lab"
+
+dependencies:
+  - name: postgresql
+    version: 10.16.2
+    repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
+  - name: common
+    version: 0.2.0
+    repository: file://charts/common

@@ -4,18 +4,18 @@ service:
   ports:
     - name: http
       port: 8080
-      containerPort: 3003
+      containerPort: 3001
 
 ingress:
-  path: /api/order
+  path: /api/storage
   port: 8080
 
 selector:
-  app: order
+  app: storage
 
 image:
-  name: order
-  tag: 2.0
+  name: storage
+  tag: 25
 
 config:
   POSTGRES_DB: demo
@@ -24,17 +24,17 @@ config:
 
 secret:
   #  JWT_SECRET: d7b79c83a74b1bfed52d80df15558874
-  POSTGRES_USER: postgres
+  POSTGRES_USER: demo
   POSTGRES_PASSWORD: demo
 #  POSTGRES_USER: "ZGVtbw=="
 #  POSTGRES_PASSWORD: "ZGVtbw=="
 
 migrations:
   image:
-    name: order-migrations
-    tag: 2.0
+    name: storage-migrations
+    tag: 25
   config:
     POSTGRES_DB: demo
-    POSTGRES_USER: postgres
+    POSTGRES_USER: demo
     POSTGRES_PASSWORD: demo
     DATABASE_URL: "jdbc:postgresql://postgres:5432/demo"

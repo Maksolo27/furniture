@@ -15,4 +15,4 @@ selector:
 
 image:
   name: client
-  tag: 1
+  tag: 25
