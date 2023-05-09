@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class OrderController {
     @Autowired
     OrderService orderService;
 
+
     @PostMapping("create")
     public void createOrder (@RequestBody String json) {
         Gson gson = new Gson ();
@@ -24,11 +26,17 @@ public class OrderController {
         orderService.addOrder(order);
     }
 
+    @CircuitBreaker(name = "orderService", fallbackMethod = "getAllOrdersFallback")
     @GetMapping()
     public ResponseEntity<List<Order>> getAllOrders () {
         System.out.println (orderService.getAllOrders());
         return ResponseEntity.ok (orderService.getAllOrders());
     }
+
+    public ResponseEntity<List<Order>> getAllOrdersFallback(Throwable ex) {
+       return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).build();
+    }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Order> getOrderById (@PathVariable String id) {
@@ -55,5 +63,3 @@ public class OrderController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
-
-
