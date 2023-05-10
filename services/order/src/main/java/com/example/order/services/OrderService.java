@@ -2,39 +2,22 @@ package com.example.order.services;
 
 import com.example.order.entities.Order;
 import com.example.order.repository.OrderRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class OrderService {
 
-    @Autowired
-    private OrderRepository orderRepository;
+    private final OrderRepository orderRepository = new OrderRepository();
 
     public List<Order> getAllOrder () {
         return orderRepository.findAll();
     }
 
-    public Optional<Order> getById(Long id){
+    public Order getById(Integer id){
         return orderRepository.findById(id);
-    }
-
-    public void addOrder(Order order) {
-        orderRepository.save(order);
-    }
-
-    public List<Order> getAllOrders() {
-        return orderRepository.findAll();
-    }
-
-    public void updateOrder(Order order) {
-        orderRepository.save(order);
-    }
-
-    public void deleteById(Long id) {
-        orderRepository.deleteById(id);
     }
 }

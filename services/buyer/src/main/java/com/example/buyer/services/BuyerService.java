@@ -9,30 +9,11 @@ import java.util.List;
 
 @Service
 public class BuyerService {
-    @Autowired
-    private BuyerRepository buyerRepository;
 
+    private final BuyerRepository buyerRepository = new BuyerRepository();
 
-    public List<Buyer> getAllBuyers () {
-        return buyerRepository.findAll();
-    }
+    public Buyer getBuyerById(long id){return buyerRepository.getById((int)id);}
 
-    public void addBuyer (Buyer buyer) {
-
-        buyerRepository.saveAndFlush(buyer);
-    }
-
-    public void updateBuyer (Buyer buyer) {
-
-        buyerRepository.save(buyer);
-    }
-    public void deleteById (Long id) {
-
-        buyerRepository.deleteById(id);
-    }
-
-    public Buyer getById(Long id){
-       return buyerRepository.findById(id).get();
-    }
+    public List<Buyer> getAllBuyers(){return buyerRepository.getAllBuyers();}
 
 }

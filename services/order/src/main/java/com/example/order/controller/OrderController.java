@@ -2,64 +2,30 @@ package com.example.order.controller;
 
 import com.example.order.entities.Order;
 import com.example.order.services.OrderService;
-import com.google.gson.Gson;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/order")
+@AllArgsConstructor
 public class OrderController {
 
-    @Autowired
-    OrderService orderService;
+    private final OrderService orderService;
 
-
-    @PostMapping("create")
-    public void createOrder (@RequestBody String json) {
-        Gson gson = new Gson ();
-        Order order = gson.fromJson (json, Order.class);
-        orderService.addOrder(order);
-    }
-
-    @CircuitBreaker(name = "orderService", fallbackMethod = "getAllOrdersFallback")
     @GetMapping()
-    public ResponseEntity<List<Order>> getAllOrders () {
-        System.out.println (orderService.getAllOrders());
-        return ResponseEntity.ok (orderService.getAllOrders());
+    public ResponseEntity<List<Order>> getAllOrder(){
+        return ResponseEntity.ok( orderService.getAllOrder());
     }
-
-    public ResponseEntity<List<Order>> getAllOrdersFallback(Throwable ex) {
-       return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).build();
-    }
-
 
     @GetMapping("/{id}")
-    public ResponseEntity<Order> getOrderById (@PathVariable String id) {
-        return ResponseEntity.ok (orderService.getAllOrders().get(Integer.parseInt(id)));
-    }
-
-    @PostMapping("update/{id}")
-    public void updateOrder (@PathVariable String id, @RequestBody String json) {
-        Gson gson = new Gson ();
-        Order order = gson.fromJson (json, Order.class);
-        Order chosenOrder = orderService.getAllOrders().get(Integer.parseInt(id));
-        chosenOrder.setItemname(order.getItemname());
-        chosenOrder.setItemprice(order.getItemprice());
-        orderService.updateOrder(order);
-    }
-
-    @DeleteMapping("delete/{id}")
-    public void deleteOrder (@PathVariable String id) {
-        orderService.deleteById(Long.valueOf(id));
-    }
-
-    @GetMapping("/ping")
-    public ResponseEntity<String> ping() {
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<Order> getAllOrder(@PathVariable Integer id){
+        return ResponseEntity.ok(orderService.getById(id));
     }
 }
+
