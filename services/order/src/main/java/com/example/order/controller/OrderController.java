@@ -16,6 +16,7 @@ public class OrderController {
 
     @Autowired
     OrderService orderService;
+    private boolean isPaused = false;
 
     @PostMapping("create")
     public void createOrder (@RequestBody String json) {
@@ -31,10 +32,16 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Order> getOrderById (@PathVariable String id) {
+    public ResponseEntity<Order> getOrderById (@PathVariable String id) throws InterruptedException {
+        if (isPaused) {
+            Thread.sleep (10000);
+        }
         return ResponseEntity.ok (orderService.getAllOrders().get(Integer.parseInt(id)));
     }
-
+    @PostMapping("pause")
+    public void pause() {
+        isPaused = !isPaused;
+    }
     @PostMapping("update/{id}")
     public void updateOrder (@PathVariable String id, @RequestBody String json) {
         Gson gson = new Gson ();
