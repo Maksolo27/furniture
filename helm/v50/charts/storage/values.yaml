@@ -21,6 +21,7 @@ config:
   POSTGRES_DB: demo
   POSTGRES_HOST: postgres
   DATABASE_URL: jdbc:postgresql://postgres:5432/demo
+  AMQP_URL: amqp://user:user@rabbitmq:5672
 
 secret:
   #  JWT_SECRET: d7b79c83a74b1bfed52d80df15558874
@@ -38,3 +39,16 @@ migrations:
     POSTGRES_USER: demo
     POSTGRES_PASSWORD: demo
     DATABASE_URL: "jdbc:postgresql://postgres:5432/demo"
+
+virtual:
+  timeout: 5s
+  retries:
+    attempts: 3
+    retryOn: 5xx
+    perTryTimeout: 5s
+
+destination:
+  consecutive5xxErrors: 5
+  interval: 10s
+  baseEjectionTime: 30s
+  maxEjectionPercent: 80
