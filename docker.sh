@@ -7,4 +7,4 @@ docker build -t order-migrations:25 -f services/order/Dockerfile.migration servi
 docker build -t buyer:25 -f services/buyer/Dockerfile services/buyer/
 docker build -t buyer-migrations:25 -f services/buyer/Dockerfile.migration services/buyer
 docker build -t client:25 -f client/Dockerfile client
-
+docker build -t email:25 -f services/email/Dockerfile services/email
