@@ -10,8 +10,6 @@ import (
 	"github.com/wagslane/go-rabbitmq"
 )
 
-var mg = mailgun.NewMailgun("sandbox0399e8667bc14f18b183432e2777a0a5.mailgun.org", os.Getenv("MAILGUN_API"))
-
 type ConfirmOrderMessage struct {
 	OrderID    string `json:"order_id"`
 	CustomerID string `json:"customer_id"`
@@ -20,6 +18,8 @@ type ConfirmOrderMessage struct {
 }
 
 func ConfirmOrderMessageHandler(d rabbitmq.Delivery) rabbitmq.Action {
+	mg := mailgun.NewMailgun("sandbox0399e8667bc14f18b183432e2777a0a5.mailgun.org", os.Getenv("MAILGUN_API"))
+
 	log.Printf("consumed: %v", string(d.Body))
 
 	var message ConfirmOrderMessage
@@ -45,5 +45,3 @@ func ConfirmOrderMessageHandler(d rabbitmq.Delivery) rabbitmq.Action {
 
 	return rabbitmq.Ack
 }
-
-

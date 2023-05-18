@@ -18,11 +18,17 @@ public class OrderController {
     OrderService orderService;
     private boolean isPaused = false;
 
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
+    private static final String EXCHANGE_NAME = "emails";
+    private static final String ROUTING_KEY_CREATE_ORDER = "create_order";
     @PostMapping("create")
     public void createOrder (@RequestBody String json) {
         Gson gson = new Gson ();
         Order order = gson.fromJson (json, Order.class);
         orderService.addOrder(order);
+        rabbitTemplate.convertAndSend(EXCHANGE_NAME, ROUTING_KEY_CREATE_ORDER, gson.toJson(order));
     }
 
     @GetMapping()
