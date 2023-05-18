@@ -1,4 +1,4 @@
-FROM golang:1.19-alpine3.16 AS service_builder
+FROM golang:1.20-alpine3.16 AS service_builder
 
 WORKDIR /
 
@@ -10,14 +10,13 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 # копіювання основного коду сервісу
-COPY services/producer services/producer
+COPY . ./
 
 # збарання сервісу
-WORKDIR /services/producer
-RUN go build -ldflags "-w -s -linkmode external -extldflags -static" -a main.go
+RUN go build -ldflags "-w -s -linkmode external -extldflags -static" -a .
 
 # підготовка фінального образу
 FROM scratch
 EXPOSE 8080
-COPY --from=service_builder /services/producer/main .
-CMD ["./main"]
+COPY --from=service_builder email .
+CMD ["./email"]
