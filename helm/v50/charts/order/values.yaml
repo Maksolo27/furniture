@@ -33,6 +33,7 @@ secret:
 
 migrations:
   image:
+    author: veronikashukhman
     name: order_migrations
     tag: 25
   config:
