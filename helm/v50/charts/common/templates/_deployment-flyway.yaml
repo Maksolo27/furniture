@@ -22,7 +22,7 @@ spec:
     spec:
       initContainers:
         - name: run-migrations
-          image: {{ .Values.migrations.image.name }}:{{ .Values.migrations.image.tag }}
+          image: {{ .Values.migrations.image.author }}/{{ .Values.migrations.image.name }}:{{ .Values.migrations.image.tag }}
           command: [ "mvn", "flyway:migrate"] # CLI команда запуску міграцій, де $(POSTGRESQL_URL) і $(VERSION) змінні середовища
           env:
             - name: DATABASE_URL

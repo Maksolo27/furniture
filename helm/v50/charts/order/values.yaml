@@ -14,7 +14,8 @@ selector:
   app: order
 
 image:
-  name: order
+  author: veronikashukhman
+  name: order2
   tag: 25
 
 config:
@@ -32,7 +33,7 @@ secret:
 
 migrations:
   image:
-    name: order-migrations
+    name: order_migrations
     tag: 25
   config:
     POSTGRES_DB: demo
