@@ -23,17 +23,17 @@
 `GET /api/buyer - Get all customers`
 
 ## Docker Hub
-order - https://hub.docker.com/repository/docker/veronikashukhman/order
+order - https://hub.docker.com/repository/docker/veronikashukhman/order2/general
 ```bash
-docker docker pull veronikashukhman/order
+docker docker pull veronikashukhman/order2:25
 ```
 
-buyer - https://hub.docker.com/repository/docker/veronikashukhman/buyer
+order-migrations - https://hub.docker.com/repository/docker/veronikashukhman/order_migrations/general
 ```bash
-docker docker pull veronikashukhman/buyer
+docker docker pull veronikashukhman/order-migration:25
 ```
 
-storage - https://hub.docker.com/repository/docker/veronikashukhman/storage
+email - https://hub.docker.com/repository/docker/veronikashukhman/email/general
 ```bash
-docker docker pull veronikashukhman/storage
+docker docker pull veronikashukhman/email:25
 ```
