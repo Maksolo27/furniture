@@ -1,8 +1,10 @@
-package order
+package consumers
 
 import (
 	"encoding/json"
 	"log"
+    "os"
+    "strconv"
 
 	"github.com/mailgun/mailgun-go"
 	"github.com/wagslane/go-rabbitmq"

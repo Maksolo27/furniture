@@ -19,7 +19,7 @@ func main() {
 
 	conn, err := rabbitmq.NewConn(
 		connURL,
-		rabbitmq.WithConnectionOptionsLogging(),
+		rabbitmq.WithConnectionOptionsLogging,
 	)
 	if err != nil {
 		log.Fatal(err)
@@ -32,7 +32,7 @@ func main() {
 		"create_order",
 		rabbitmq.WithConsumerOptionsRoutingKey("create_order"),
 		rabbitmq.WithConsumerOptionsExchangeName("emails"),
-		rabbitmq.WithConsumerOptionsExchangeDeclare(),
+		rabbitmq.WithConsumerOptionsExchangeDeclare,
 	)
 	if err != nil {
 		log.Fatal(err)
@@ -45,7 +45,7 @@ func main() {
 		"confirm_order",
 		rabbitmq.WithConsumerOptionsRoutingKey("confirm_order"),
 		rabbitmq.WithConsumerOptionsExchangeName("emails"),
-		rabbitmq.WithConsumerOptionsExchangeDeclare(),
+		rabbitmq.WithConsumerOptionsExchangeDeclare,
 	)
 	if err != nil {
 		log.Fatal(err)

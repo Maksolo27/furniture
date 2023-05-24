@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.amqp.core.AmqpTemplate;
+
 import java.util.List;
 
 @RestController
@@ -19,7 +21,7 @@ public class OrderController {
     private boolean isPaused = false;
 
     @Autowired
-    private RabbitTemplate rabbitTemplate;
+    private AmqpTemplate amqpTemplate;
 
     private static final String EXCHANGE_NAME = "emails";
     private static final String ROUTING_KEY_CREATE_ORDER = "create_order";
@@ -28,7 +30,7 @@ public class OrderController {
         Gson gson = new Gson ();
         Order order = gson.fromJson (json, Order.class);
         orderService.addOrder(order);
-        rabbitTemplate.convertAndSend(EXCHANGE_NAME, ROUTING_KEY_CREATE_ORDER, gson.toJson(order));
+        amqpTemplate.convertAndSend(EXCHANGE_NAME, ROUTING_KEY_CREATE_ORDER, gson.toJson(order));
     }
 
     @GetMapping()

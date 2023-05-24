@@ -1,4 +1,4 @@
-package order
+package consumers
 
 import (
 	"encoding/json"
