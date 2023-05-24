@@ -25,15 +25,15 @@
 ## Docker Hub
 order - https://hub.docker.com/repository/docker/veronikashukhman/order2/general
 ```bash
-docker docker pull veronikashukhman/order2:25
+docker pull veronikashukhman/order2:25
 ```
 
 order-migrations - https://hub.docker.com/repository/docker/veronikashukhman/order_migrations/general
 ```bash
-docker docker pull veronikashukhman/order-migration:25
+docker pull veronikashukhman/order_migrations:25
 ```
 
 email - https://hub.docker.com/repository/docker/veronikashukhman/email/general
 ```bash
-docker docker pull veronikashukhman/email:25
+docker pull veronikashukhman/email:25
 ```
