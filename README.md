@@ -37,3 +37,12 @@ email - https://hub.docker.com/repository/docker/veronikashukhman/email/general
 ```bash
 docker pull veronikashukhman/email:25
 ```
+## For lab5
+
+ 1.To check the correct work of rabbitmq use this command:
+```bash
+kubectl port-forward service/rabbitmq 15672:15672 
+``` 
+2. Go to [http://localhost:15672/#/queues/%2F/create_order] login with username [user] and password [user].
+3. After you have to go to [localhost](http://localhost) and make a new order.
+4. And go back to rabbitmq console at http://localhost:15672/#/queues/%2F/create_order and you will see that the message has been transmitted.
