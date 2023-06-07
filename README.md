@@ -37,7 +37,7 @@ email - https://hub.docker.com/repository/docker/veronikashukhman/email/general
 ```bash
 docker pull veronikashukhman/email:25
 ```
-## For lab5
+## For rabbit test
 
  1.To check the correct work of rabbitmq use this command:
 ```bash
